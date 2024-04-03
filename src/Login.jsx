@@ -3,8 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-regular-svg-icons";
 import Navbar from "./Navbar";
+import { useEffect } from "react";
 
 export default function Login() {
+  const token = localStorage.getItem("token");
   const [isPasswordShowed, setIsPasswordShowed] = useState(true);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -25,6 +27,10 @@ export default function Login() {
     setIsUserNameNull(true);
     setIsUserPasswordNull(true);
   };
+
+  useEffect(() => {
+    token ? navigate("/") : "";
+  }, []);
 
   async function getData() {
     try {
